@@ -6,7 +6,7 @@
 /*   By: misi-moh <misi-moh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 12:44:01 by misi-moh          #+#    #+#             */
-/*   Updated: 2023/01/15 17:55:35 by misi-moh         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:09:31 by misi-moh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,75 +17,57 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
-	while (*s++)
+	while (s && s[i] && s[i] != '\n')
+		i++;
+	if (s && s[i] == '\n')
 		i++;
 	return (i);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	i;
+	char	*ret;
+	int		i;
+	int		j;
 
-	i = 0;
-	while (*src && i + 1 < dstsize)
-	{
-		*dst++ = *src++;
-		++i;
-	}
-	if (i < dstsize)
-		*dst = 0;
-	while (*src++)
-		++i;
-	return (i);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s != ((unsigned char)c))
-		if (!*s++)
-			return (0);
-	return ((char *)s);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*str;
-	size_t	i;
-	size_t	j;
-
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!str)
+	if (s2[0] == '\0')
+		return (0);
+	ret = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!ret)
 		return (0);
 	i = 0;
+	while (s1 && s1[i])
+	{
+		ret[i] = s1[i];
+		i++;
+	}
 	j = 0;
-	while (s1[i])
-	{
-		str[j++] = s1[i];
-		i++;
-	}
-	i = 0;
-	while (s2[i])
-	{
-		str[j++] = s2[i];
-		i++;
-	}
-	str[j] = 0;
-	return (str);
+	while (s2 && s2[j] && s2[j] != '\n')
+		ret[i++] = s2[j++];
+	if (s2[j] == '\n')
+		ret[i++] = '\n';
+	ret[i] = '\0';
+	if (s1)
+		free(s1);
+	return (ret);
 }
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+int	ft_cleanit(char *str)
 {
-	char	*tmp;
-	char	*ret;
-	size_t	i;
+	int	i;
+	int	j;
+	int	is_nl;
 
-	ret = (char *)malloc(sizeof(char) * (len + 1));
-	if (!ret)
-		return (NULL);
-	tmp = (char *)(s) + start;
 	i = 0;
-	while (*tmp && i < len)
-		ret[i++] = *tmp++;
-	ret[i] = 0;
-	return (ret);
+	j = 0;
+	is_nl = 0;
+	while (str[i])
+	{
+		if (is_nl)
+			str[j++] = str[i];
+		if (str[i] == '\n')
+			is_nl = 1;
+		str[i++] = '\0';
+	}
+	return (is_nl);
 }
