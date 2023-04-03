@@ -7,16 +7,16 @@
 </p>
 
 <h3 align="center">
-	<a href="#%EF%B8%8F-about">About</a>
+	<a href="#about">About</a>
 	<span> · </span>
-	<a href="#%EF%B8%8F-usage">Usage</a>
+	<a href="#usage">Usage</a>
 	<span> · </span>
-	<a href="#-testing">Testing</a>
+	<a href="#testing">Testing</a>
 </h3>
 
 ---
 
-## 💡 About the project
+## 💡 <a id="about">About the project</a>
 
 > _The aim of this project is to make you code a function that returns a line, read from a file descriptor._
 	You will understand how files are opened, read and closed in an OS,
@@ -27,8 +27,7 @@
 
 For more detailed information, look at the [**subject of this project**](https://github.com/M-Mohassel/42-get_next_line/blob/main/en.subject.pdf).
 
-
-## 🛠️ Usage
+## 🛠️ <a id="usage">Usage</a>
 
 ### Requirements
 
@@ -50,7 +49,7 @@ and, when compiling your code, add the source files and the required flag:
 get_next_line.c get_next_line_utils.c -D BUFFER_SIZE=<size>
 ```
 
-## 📋 Testing
+## 📋 <a id="testing">Testing</a>
 
 You only have to edit the get_next_line.c file and uncomment the main function and headers inside it.
 You can edit test.txt files to put another text if you wish to test othe cases.
